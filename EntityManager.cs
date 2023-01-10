@@ -10,7 +10,7 @@ namespace DataTableEcs
         private int _nextID = 0;
         private Stack<int> _recycledIDs = new Stack<int>();
 
-        private DataTable _entities = new DataTable();
+        public DataTable Entities { get; set; } = new DataTable();
 
         public int EntityCapacity { get; private set; } = 0;
         public int EntityCount { get; private set; } = 0;
@@ -19,10 +19,10 @@ namespace DataTableEcs
         {
             EntityCapacity = entityCapacity;
 
-            DataColumn entityIDColumn = _entities.Columns.Add("ID", typeof(Int32));
+            DataColumn entityIDColumn = Entities.Columns.Add("ID", typeof(Int32));
             entityIDColumn.AllowDBNull = false;
             entityIDColumn.Unique = true;
-            _entities.PrimaryKey = new DataColumn[1] { entityIDColumn };
+            Entities.PrimaryKey = new DataColumn[1] { entityIDColumn };
         }
 
         public Entity GetEntity(int ID)
@@ -54,33 +54,33 @@ namespace DataTableEcs
         public void RegisterEntity(Entity e)
         {
             e.ID = GetNextID();
-            var newRow = _entities.NewRow();
+            var newRow = Entities.NewRow();
             newRow[0] = e.ID;
-            _entities.Rows.Add(newRow);
+            Entities.Rows.Add(newRow);
         }
 
         public void RegisterComponent<T>()
         {
-            if (!_entities.Columns.Contains(typeof(T).Name))
+            if (!Entities.Columns.Contains(typeof(T).Name))
             {
-                _entities.Columns.Add(typeof(T).Name, typeof(T));
+                Entities.Columns.Add(typeof(T).Name, typeof(T));
             }
         }
 
         public void DestroyEntity(int ID)
         {
-            DataRow workingRow = _entities.Rows.Find(ID);
+            DataRow workingRow = Entities.Rows.Find(ID);
 
             if (workingRow != null)
             {
-                _entities.Rows.Remove(workingRow);
+                Entities.Rows.Remove(workingRow);
                 _recycledIDs.Push(ID);
             }
         }
 
         internal T GetComponent<T>(Entity entity) where T : Component
         {
-            var workingRow = _entities.Rows.Find(entity.ID);
+            var workingRow = Entities.Rows.Find(entity.ID);
             return (T)workingRow[typeof(T).Name];
 
         }
@@ -88,36 +88,36 @@ namespace DataTableEcs
         internal void AddComponent<T>(Entity entity, T component) where T : Component
         {
             RegisterComponent<T>();
-            var workingRow = _entities.Rows.Find(entity.ID);
+            var workingRow = Entities.Rows.Find(entity.ID);
             workingRow[typeof(T).Name] = component;
 
         }
 
         internal void RemoveComponent<T>(Entity entity) where T : Component
         {
-            var workingRow = _entities.Rows.Find(entity.ID);
+            var workingRow = Entities.Rows.Find(entity.ID);
             workingRow[typeof(T).Name] = DBNull.Value;
 
         }
 
         public void Clear()
         {
-            _entities.Clear();
+            Entities.Clear();
         }
 
         public string PrintData()
         {
             string retVal = "";
 
-            foreach (DataColumn col in _entities.Columns)
+            foreach (DataColumn col in Entities.Columns)
             {
                 retVal += col.ToString().PadRight(40) + "\t";
             }
             retVal += "\n";
 
-            foreach (DataRow row in _entities.Rows)
+            foreach (DataRow row in Entities.Rows)
             {
-                foreach (DataColumn col in _entities.Columns)
+                foreach (DataColumn col in Entities.Columns)
                 {
                     retVal += row[col].ToString().PadRight(40) + "\t";
                 }
