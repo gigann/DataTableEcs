@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTableEcs", "DataTableEcs.csproj", "{17CA314C-31EF-4C78-9D87-B9934667148A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTableEcsTests", "..\DataTableEcsTests\DataTableEcsTests.csproj", "{0D8D2FFB-FE1A-4FFB-9111-BB942D4258A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17CA314C-31EF-4C78-9D87-B9934667148A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CA314C-31EF-4C78-9D87-B9934667148A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CA314C-31EF-4C78-9D87-B9934667148A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CA314C-31EF-4C78-9D87-B9934667148A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D8D2FFB-FE1A-4FFB-9111-BB942D4258A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8D2FFB-FE1A-4FFB-9111-BB942D4258A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8D2FFB-FE1A-4FFB-9111-BB942D4258A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8D2FFB-FE1A-4FFB-9111-BB942D4258A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDA01818-BD21-40FA-A980-C11F1A253FC9}
+	EndGlobalSection
+EndGlobal
