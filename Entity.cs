@@ -1,5 +1,9 @@
 ﻿namespace DataTableEcs
 {
+    /// <summary>
+    /// An entity is just a container for an ID.
+    /// They are intended for quick discardation by the GC.
+    /// </summary>
     public class Entity
     {
         private EntityManager _manager;
